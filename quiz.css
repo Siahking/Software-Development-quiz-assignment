@@ -1,0 +1,43 @@
+.question-div,#container{
+    display: flex;
+    flex-direction: column;
+}
+
+button,input,label{
+    cursor: pointer;
+}
+
+#container{
+    align-items: center;
+}
+
+.question-div{
+    width: 600px;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: rgb(245, 245, 245);
+}
+
+.question-div span,.question-div p{
+    font-size: 1.2rem;
+}
+
+button{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    width: 100px;
+    font-size: .9rem;
+    transition: 0.1s;
+}
+
+button:hover{
+    transition: 0.1s;
+    background-color: rgb(194, 194, 194);
+}
+
+button:active{
+    background-color: lightgreen;
+}
