@@ -3,12 +3,17 @@
     flex-direction: column;
 }
 
+#tally{
+    font-size: 1.5rem;
+}
+
 button,input,label{
     cursor: pointer;
 }
 
 #container{
     align-items: center;
+    margin: 0 auto;
 }
 
 .question-div{
@@ -20,7 +25,13 @@ button,input,label{
 }
 
 .question-div span,.question-div p{
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+}
+
+#button-container{
+    display: flex;
+    justify-content: center;
+    min-width: 90px;
 }
 
 button{
@@ -29,7 +40,7 @@ button{
     padding: 10px;
     margin: 20px;
     width: 100px;
-    font-size: .9rem;
+    font-size: 1.1rem;
     transition: 0.1s;
 }
 
@@ -40,4 +51,166 @@ button:hover{
 
 button:active{
     background-color: lightgreen;
+}
+
+.hidden{
+    display: none;
+}
+
+#welcome-message{
+    display: flex;
+    font-size: 1.6rem;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+}
+
+#welcome-message p{
+    text-align: center;
+    width: 40rem;
+}
+
+.balloon {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: red;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: float 4s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes float {
+    0% {
+    bottom: 0;
+    opacity: 1;
+    }
+    100% {
+    bottom: 100vh;
+    opacity: 0;
+    }
+}
+
+#celebration {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+}
+
+@media (max-width: 425px){
+
+    #welcome-message,#welcome-message p{
+        margin: 0;
+        padding: 0;
+    }
+
+    #welcome-message{
+        width: 100%;
+    }
+
+    #welcome-message p{
+        width: 15.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .question-div{
+        width:200px;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border-radius: 10px;
+        background-color: rgb(245, 245, 245);
+    }
+
+    .question-div span,.question-div p{
+        font-size: 1.2rem;
+    }
+
+    #container{
+        margin: 0 auto;
+    }
+
+    #container p,label{
+        font-size: 1rem;
+    }
+
+    .span-styles{
+        font-size: 0.9rem !important;
+    }
+
+    button{
+        padding: 5px 10px;
+        width: 4rem;
+        font-size: .75rem;
+    }
+}
+
+@media (min-width: 1024px){
+    #tally{
+        font-size: 2.6rem;
+    }
+
+    #welcome-message{
+        width: 100%;
+    }
+
+    #welcome-message p{
+        width: 60rem;
+        font-size: 2.5rem;
+    }
+
+    .question-div{
+        padding: 23px 35px;
+    }
+
+    button{
+        font-size: 1.3rem;
+        width: 8rem;
+    }
+
+    .span-styles,.question-div p{
+        font-size: 2.1rem !important;
+    }
+
+    button{
+        font-size: 1.6rem;
+    }
+
+}
+
+@media (min-width:2560px){
+    #tally{
+        font-size: 5rem;
+    }
+
+    #welcome-message p{
+        width: 100rem;
+        font-size: 4.8rem;
+    }
+
+    .question-div{
+        padding:20px 10px 60px 70px;
+    }
+
+    .span-styles,.question-div p{
+        font-size: 5rem !important;
+    }
+
+    .question-div{
+        /* padding: 2rem; */
+        margin: 2rem 0;
+        width: 70rem;
+        border-radius: 3rem;
+    }
+
+    button{
+        width: 25rem;
+        height: 13rem;
+        font-size: 4.2rem;
+        border-radius: 4rem;
+    }
 }

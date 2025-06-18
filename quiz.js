@@ -13,12 +13,29 @@ const displayLst = questionLst.map(question=>({
     ...question,ans:[...question.ans]
 }));
 const container = document.getElementById('container');
+const welcomeMessage = document.getElementById("welcome-message")
+const btnContainer = document.getElementById("button-container")
+
+//button to check answers after answering the questions
+const button1 = document.createElement('button');
+button1.id = 'check-answers';
+button1.innerHTML = 'Check Answers';
+button1.addEventListener('click',checkAnswers);
+
+//button to try again after getting the results
+const button2 = document.createElement('button');
+button2.id = 'refresh';
+button2.innerHTML = 'Try again';
+button2.addEventListener('click',function(){
+    location.reload();
+});
+button2.classList.add("hidden")
 
 //accepts a object which has a question and an answer field. This object is returned from the front end after the user submits their answers.
 //for example is the question was "1+1" and the user clicks 2, the object would store ['question':'1+1','answer':'2']
 //this function finds the question in the question lst and compars the answer to the first index in the question list(which has the correct answer)
 function compareObjs(obj){
-    for ([question,answers] of questionLst.entries()){
+    for ([index,answers] of questionLst.entries()){
         const keys = Object.keys(answers);
         if (keys[0] === obj.question){
             if (questionLst[index]['ans'][0] === obj.ans){
@@ -70,13 +87,15 @@ function checkAnswers(){
     }
     //displays success message depending on the amount of answers the user got correct
     const tally = document.getElementById('tally');
+    button1.classList.add("hidden")
     if (correctAnswers === 5){
         tally.innerHTML = "Congratulations you got all answers correct.";
+        triggerCelebration()
     }else{
         tally.innerHTML = `You got ${correctAnswers} answers correct you should try again`;
     };
 
-    this.style.display = 'none';
+    this.classList.add('hidden');
     document.getElementById('refresh').style.display = 'block';
 };
 
@@ -103,21 +122,6 @@ displayLst.forEach(arr=>{
 });
 shuffle(displayLst);
 
-//button to check answers after answering the questions
-const button1 = document.createElement('button');
-button1.id = 'check-answers';
-button1.innerHTML = 'Check Answers';
-button1.addEventListener('click',checkAnswers);
-
-//button to try again after getting the results
-const button2 = document.createElement('button');
-button2.id = 'refresh';
-button2.innerHTML = 'Try again';
-button2.addEventListener('click',function(){
-    location.reload();
-});
-button2.style.display = 'none';
-
 //displays the shuffled qeustions and answers from the copied and shuffled list
 displayLst.forEach(arr=>{
     const keys = Object.keys(arr);
@@ -135,6 +139,7 @@ displayLst.forEach(arr=>{
         const input = document.createElement('input');
         
         span.innerHTML = answer;
+        span.classList.add("span-styles")
         input.type = 'radio';
         input.name = `${keys[0]}-option`;
         input.id = `${keys[0]}-option${count}`;
@@ -150,5 +155,23 @@ displayLst.forEach(arr=>{
 })
 
 //appends the both buttons to the div
-container.appendChild(button1);
-container.appendChild(button2);
+for (const btn of [button1,button2]){
+    btnContainer.appendChild(btn)
+}
+
+function triggerCelebration() {
+  const celebration = document.getElementById("celebration");
+  for (let iteration = 0; iteration < 3; iteration++){
+    for (let i = 0; i < 20; i++) {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.style.left = Math.random() * 100 + "vw";
+        balloon.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        balloon.style.animationDuration = 2 + Math.random() * 2 + "s";
+        celebration.appendChild(balloon);
+
+        // Remove balloon after animation ends
+        setTimeout(() => balloon.remove(), 4000);
+    }
+  }
+}
